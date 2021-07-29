@@ -1,4 +1,13 @@
-set number 
+set number           "Set vertical numbers on left
+set scrolloff=5      " Leave 5 lines of buffer when scrolling
+set sidescrolloff=10 " Leave 10 characters of horizontal buffer when scrolling
+
+colorscheme gruvbox
+set background=dark
+
+" Showcase comments in italics
+highlight Comment cterm=italic gui=italic
+
 syntax on
 set encoding=utf-8
 set number relativenumber
@@ -7,13 +16,16 @@ set number relativenumber
 nnoremap <C-z> :!g++ -o %:r.out % -std=c++11<Enter>
 nnoremap <C-x> :!./%:r.out
 
+" Easy tab navigation
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+
 "setting tabs to be 4 spaces
 set tabstop=4 softtabstop=4 shiftwidth=4
 
 "executing vimrc in the same folder that file is 
 set exrc
 
-set guicursor=
 "better search :/
 set nohlsearch
 set hlsearch
@@ -21,8 +33,8 @@ set incsearch
 
 set wildmode=longest,list,full
 
-"no bells after errors
-set noerrorbells
+"Turnoff bells
+set noerrorbells novisualbell
 
 "no wrap when number of characters passes window
 set nowrap
@@ -44,7 +56,31 @@ set filetype
 "setting tabs to go verticaly
 set splitbelow splitright
 
+"auto reload changed file
+set autoread
+
+"Tab autocomplete in command mode
+set wildmenu
+
+"Show status line on start up
+set laststatus=2
+
+"reduce redraw frequency
+set lazyredraw
+
+" Persistent undo
+set undodir=~/.vim/undo/
+set undofile
+set undolevels=1000
+set undoreload=10000
+
+"Setting checkers for syntastic
+"delating commands for checker since its not editor command
+autocmd VimEnter * call timer_start(200, { tid -> execute('SyntasticCheck clang_check')})
+ 
 "Pluging with vim-plug
 call plug#begin('~/.vim/plugged')
 Plug 'gruvbox-community/gruvbox'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'vim-syntastic/syntastic'
 call plug#end()

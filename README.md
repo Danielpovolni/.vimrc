@@ -6,8 +6,9 @@ NerdTree - Visualizing directory tree structure
 TagBar - Nice Tag viewer
 Poweline - Nicer Status line
 
+Colorscheme Gruvbox, may not run at startup
+
 Plugins for C++ development
 YouCompleteMe - Code completion
 Syntastic - Syntax checking
 
-Shortcuts for complileing and executing current .cppfile using g++
